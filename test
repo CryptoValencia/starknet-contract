@@ -1,0 +1,24 @@
+#[contract]
+mod StorageVariablesExample {
+    // All storage variables are contained in a struct called Storage
+    struct Storage {
+        // Storage variable holding a number
+        _value: u64
+    }
+    #[external]
+    // Write to storage variables by sending a transaction that calls an external function
+    fn set(value: u64) {
+        _value::write(value);
+        _value::write(value);
+    }
+    #[view]
+    // Read from storage variables without sending transactions
+    fn get() -> u64 {
+        _value::read()
+    }
+    
+    #[constructor]
+    fn constructor(value: u64) {
+        _value::write(value);
+    }
+}
